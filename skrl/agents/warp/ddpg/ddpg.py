@@ -6,12 +6,12 @@ import gymnasium
 
 import numpy as np
 import warp as wp
+from warp_nn.optimizers import Adam
 
 from skrl import logger
 from skrl.agents.warp import Agent
 from skrl.memories.warp import Memory
 from skrl.models.warp import Model
-from skrl.resources.optimizers.warp import Adam
 from skrl.utils import ScopedTimer
 from skrl.utils.spaces.warp import compute_space_limits
 
@@ -81,7 +81,7 @@ class DDPG(Agent):
         observation_space: gymnasium.Space | None = None,
         state_space: gymnasium.Space | None = None,
         action_space: gymnasium.Space | None = None,
-        device: str | wp.context.Device | None = None,
+        device: str | wp.Device | None = None,
         cfg: DDPG_CFG | dict = {},
     ) -> None:
         """Deep Deterministic Policy Gradient (DDPG).

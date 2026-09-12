@@ -2,7 +2,24 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [2.0.0] - Unreleased
+## [2.1.0] - 2026-05-10
+### Changed
+- Improving the robustness and learning capabilities of on-policy algorithms:
+  - Sample data from memory using per-epoch mini-batch shuffling
+  - Sum-reduce policy entropy to prevent collapse into near-deterministic stand still behavior
+- Set the random memory `replacement` argument to false by default
+
+### Fixed
+- Fix time limits handling of truncation signals in on-policy agents/multi-agents
+- Fix the indexing of finished episodes for cumulative rewards and timestep tracking
+
+## [2.0.0] - 2026-04-08
+
+Summary of the most relevant features:
+- RL algorithm implementations in NVIDIA Warp
+- Differentiate between environment observations and states (also known as privileged observation)
+- Support for MuJoCo Playground and ManiSkill environments
+
 ### Added
 - Implement RL algorithms in NVIDIA Warp
 - Add loader and wrapper for MuJoCo Playground environments

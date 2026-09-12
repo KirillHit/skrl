@@ -6,8 +6,8 @@ import ast
 from gymnasium import spaces
 
 import warp as wp
+import warp_nn.nn as nn  # noqa
 
-import skrl.models.warp.nn as nn
 from skrl.utils.framework.warp import concatenate
 
 
@@ -105,10 +105,11 @@ def _parse_output(source: str | list[str]) -> tuple[str | list[str], list[str], 
                 if node.func.id == "concatenate":
                     node.func = ast.Attribute(value=ast.Name("warp_utils"), attr="concatenate")
                     node.keywords = [ast.keyword(arg="axis", value=ast.Constant(value=1))]
-                # activation functions
-                activation = _get_activation_function(node.func.id, as_module=False)
-                if activation:
-                    node.func = ast.Attribute(value=ast.Name("nn"), attr=activation)
+                else:
+                    # activation functions
+                    activation = _get_activation_function(node.func.id, as_module=False)
+                    if activation:
+                        node.func = ast.Attribute(value=ast.Name("nn"), attr=activation)
             return node
 
     size = get_num_units("ACTIONS")
